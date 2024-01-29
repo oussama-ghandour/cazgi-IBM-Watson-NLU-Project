@@ -2,6 +2,8 @@ import './bootstrap.min.css';
 import './App.css';
 import EmotionTable from './EmotionTable.js';
 import React from 'react';
+import Button from '@mui/material/Button';
+import { Card, CardContent, Typography } from '@mui/material';
 
 class App extends React.Component {
   /*The initial input modeis set to text
@@ -72,15 +74,30 @@ class App extends React.Component {
   render() {
     return (  
       <div className="App">
-      <button className="btn btn-info" onClick={()=>{this.renderOutput('text')}}>Text</button>
-        <button className="btn btn-dark"  onClick={()=>{this.renderOutput('url')}}>URL</button>
-        <br/><br/>
-        {this.state.innercomp}
-        <br/>
-        <button className="btn-primary" onClick={this.sendForSentimentAnalysis}>Analyze Sentiment</button>
-        <button className="btn-primary" onClick={this.sendForEmotionAnalysis}>Analyze Emotion</button>
-        <br/>
-            {this.state.sentimentOutput}
+        <div style={{marginTop:"20px"}}>
+            <Card style={{width:"50%", marginLeft:"400px", backgroundColor:"#fafafa"}} elevation={3}>
+                <CardContent>
+                    <Typography variant="h4">Welcome to Sentiment Analyze App</Typography>
+                    <div style={{marginTop:"20px"}}>
+                        <Typography style={{fontSize:"14px", color:"#212121",fontFamily:"Roboto"}}>Try to conduct sentiment analysis or emotions by choosing Text or URL</Typography>
+                        <div style={{marginTop:"10px"}}>
+                            <Button variant="contained" style={{backgroundColor:"#085696", }} onClick={()=>{this.renderOutput('text')}}>Text</Button>
+                            <Button variant="contained" style={{marginLeft:"20px", backgroundColor:"#595959"}}  onClick={()=>{this.renderOutput('url')}}>URL</Button>
+                        </div>
+                    </div>
+                        <br/><br/>
+                        <Typography style={{fontFamily:"bold"}}>Before receiving the sentiment analysis or emotions, make sure to type the text or url</Typography>
+                        {this.state.innercomp}
+                        <br/>
+                        <div style={{marginTop:"10px"}}>
+                            <Button variant="contained" style={{backgroundColor:"#3D5E1C"}} onClick={this.sendForSentimentAnalysis}>Analyze Sentiment</Button>
+                            <Button variant="contained" style={{backgroundColor:"#2E662F",marginLeft:"20px"}} onClick={this.sendForEmotionAnalysis}>Analyze Emotion</Button>
+                        </div>
+                        <br/>
+                        {this.state.sentimentOutput}
+                    </CardContent>
+            </Card>
+        </div>
       </div>
     );
     }
